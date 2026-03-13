@@ -1,0 +1,268 @@
+# Reading pref.tcl
+# //  Questa Sim-64
+# //  Version 2021.1 win64 Jan 19 2021
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+pwd
+# F:/Electronics/Projects/Processors/Piplined_Single_Cycle_MIPS
+do ./scripts/run.do
+# QuestaSim-64 vlog 2021.1 Compiler 2021.01 Jan 19 2021
+# Start time: 16:24:58 on Mar 13,2026
+# vlog -reportprogress 300 -sv -f ./scripts/files.f 
+# -- Compiling module top
+# -- Compiling module alu_decoder
+# -- Compiling module control_unit
+# ** Error: (vlog-13069) rtl/Control Unit/control_unit.sv(26): near ")": syntax error, unexpected ')', expecting .* or '.'.
+# -- Compiling module main_decoder
+# -- Compiling module alu
+# -- Compiling module data_mem
+# ** Error: rtl/Data Path/data_mem.sv(19): (vlog-2110) Illegal reference to net "addr".
+# -- Compiling module data_path
+# ** Error: (vlog-13038) rtl/Data Path/data_path.sv(14): near ")": Missing port in ansi port list.
+# -- Compiling module InstructionMemory
+# -- Compiling module pc_register
+# -- Compiling module register_file
+# -- Compiling module sign_extender
+# -- Compiling module top_tb
+# End time: 16:24:59 on Mar 13,2026, Elapsed time: 0:00:01
+# Errors: 3, Warnings: 0
+# ** Error: C:/questasim64_2021.1/win64/vlog failed.
+# Error in macro ././scripts/run.do line 3
+# C:/questasim64_2021.1/win64/vlog failed.
+#     while executing
+# "vlog -sv -f ./scripts/files.f"
+do ./scripts/run.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Errors: 0, Warnings: 1
+# QuestaSim-64 vlog 2021.1 Compiler 2021.01 Jan 19 2021
+# Start time: 16:26:29 on Mar 13,2026
+# vlog -reportprogress 300 -sv -f ./scripts/files.f 
+# -- Compiling module top
+# -- Compiling module alu_decoder
+# -- Compiling module control_unit
+# -- Compiling module main_decoder
+# -- Compiling module alu
+# -- Compiling module data_mem
+# ** Error: rtl/Data Path/data_mem.sv(19): (vlog-2110) Illegal reference to net "addr".
+# -- Compiling module data_path
+# ** Error: rtl/Data Path/data_path.sv(24): (vlog-2730) Undefined variable: 'InstrD'.
+# ** Error: rtl/Data Path/data_path.sv(25): (vlog-2730) Undefined variable: 'PCPlus4D'.
+# ** Error: rtl/Data Path/data_path.sv(28): (vlog-2730) Undefined variable: 'InstrD'.
+# ** Error: rtl/Data Path/data_path.sv(29): (vlog-2730) Undefined variable: 'PCPlus4D'.
+# ** Error: rtl/Data Path/data_path.sv(67): (vlog-2730) Undefined variable: 'SrcAE'.
+# ** Error: rtl/Data Path/data_path.sv(68): (vlog-2730) Undefined variable: 'RegFile_ReadData2_E'.
+# ** Error: rtl/Data Path/data_path.sv(69): (vlog-2730) Undefined variable: 'RtE'.
+# ** Error: rtl/Data Path/data_path.sv(72): (vlog-2730) Undefined variable: 'SignImmE'.
+# ** Error: rtl/Data Path/data_path.sv(72): (vlog-2730) Undefined variable: 'SignImmD'.
+# ** Error: rtl/Data Path/data_path.sv(73): (vlog-2730) Undefined variable: 'PCPlus4E'.
+# ** Error: rtl/Data Path/data_path.sv(74): (vlog-2730) Undefined variable: 'RegWriteE'.
+# ** Error: rtl/Data Path/data_path.sv(75): (vlog-2730) Undefined variable: 'MemtoRegE'.
+# ** Error: rtl/Data Path/data_path.sv(76): (vlog-2730) Undefined variable: 'BranchE'.
+# ** Error: rtl/Data Path/data_path.sv(77): (vlog-2730) Undefined variable: 'ALUControlE'.
+# ** Error: rtl/Data Path/data_path.sv(78): (vlog-2730) Undefined variable: 'ALUSrcE'.
+# ** Error: rtl/Data Path/data_path.sv(79): (vlog-2730) Undefined variable: 'RegDstE'.
+# ** Error: rtl/Data Path/data_path.sv(93): (vlog-2730) Undefined variable: 'WriteRegW'.
+# ** Error: rtl/Data Path/data_path.sv(119): (vlog-2730) Undefined variable: 'ALUOutM'.
+# ** Error: rtl/Data Path/data_path.sv(120): (vlog-2730) Undefined variable: 'ZeroE'.
+# ** Error: rtl/Data Path/data_path.sv(121): (vlog-2730) Undefined variable: 'WriteDataM'.
+# ** Error: rtl/Data Path/data_path.sv(121): (vlog-2730) Undefined variable: 'WriteDataE'.
+# ** Error: rtl/Data Path/data_path.sv(122): (vlog-2730) Undefined variable: 'WriteRegM'.
+# ** Error: rtl/Data Path/data_path.sv(125): (vlog-2730) Undefined variable: 'RegWriteM'.
+# ** Error: rtl/Data Path/data_path.sv(126): (vlog-2730) Undefined variable: 'MemtoRegM'.
+# ** Error: rtl/Data Path/data_path.sv(127): (vlog-2730) Undefined variable: 'MemWriteM'.
+# ** Error: rtl/Data Path/data_path.sv(128): (vlog-2730) Undefined variable: 'BranchM'.
+# ** Error (suppressible): rtl/Data Path/data_path.sv(171): (vlog-2388) 'ZeroM' already declared in this scope (data_path) at rtl/Data Path/data_path.sv(114).
+# ** Error (suppressible): rtl/Data Path/data_path.sv(186): (vlog-2388) 'RegWriteW' already declared in this scope (data_path) at rtl/Data Path/data_path.sv(92).
+# ** Error (suppressible): rtl/Data Path/data_path.sv(187): (vlog-2388) 'ResultW' already declared in this scope (data_path) at rtl/Data Path/data_path.sv(94).
+# ** Error (suppressible): rtl/Data Path/data_path.sv(188): (vlog-2388) 'WriteRegW' already declared in this scope (data_path) at rtl/Data Path/data_path.sv(93).
+# -- Compiling module InstructionMemory
+# -- Compiling module pc_register
+# -- Compiling module register_file
+# -- Compiling module sign_extender
+# -- Compiling module top_tb
+# End time: 16:26:29 on Mar 13,2026, Elapsed time: 0:00:00
+# Errors: 31, Warnings: 0
+# ** Error: C:/questasim64_2021.1/win64/vlog failed.
+# Error in macro ././scripts/run.do line 3
+# C:/questasim64_2021.1/win64/vlog failed.
+#     while executing
+# "vlog -sv -f ./scripts/files.f"
+do ./scripts/run.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Errors: 0, Warnings: 1
+# QuestaSim-64 vlog 2021.1 Compiler 2021.01 Jan 19 2021
+# Start time: 16:28:48 on Mar 13,2026
+# vlog -reportprogress 300 -sv -f ./scripts/files.f 
+# -- Compiling module top
+# -- Compiling module alu_decoder
+# -- Compiling module control_unit
+# -- Compiling module main_decoder
+# -- Compiling module alu
+# -- Compiling module data_mem
+# ** Error: rtl/Data Path/data_mem.sv(19): (vlog-2110) Illegal reference to net "addr".
+# -- Compiling module data_path
+# ** Error: rtl/Data Path/data_path.sv(24): (vlog-2730) Undefined variable: 'InstrD'.
+# ** Error: rtl/Data Path/data_path.sv(25): (vlog-2730) Undefined variable: 'PCPlus4D'.
+# ** Error: rtl/Data Path/data_path.sv(28): (vlog-2730) Undefined variable: 'InstrD'.
+# ** Error: rtl/Data Path/data_path.sv(29): (vlog-2730) Undefined variable: 'PCPlus4D'.
+# ** Error: rtl/Data Path/data_path.sv(67): (vlog-2730) Undefined variable: 'SrcAE'.
+# ** Error: rtl/Data Path/data_path.sv(68): (vlog-2730) Undefined variable: 'RegFile_ReadData2_E'.
+# ** Error: rtl/Data Path/data_path.sv(69): (vlog-2730) Undefined variable: 'RtE'.
+# ** Error: rtl/Data Path/data_path.sv(72): (vlog-2730) Undefined variable: 'SignImmE'.
+# ** Error: rtl/Data Path/data_path.sv(72): (vlog-2730) Undefined variable: 'SignImmD'.
+# ** Error: rtl/Data Path/data_path.sv(73): (vlog-2730) Undefined variable: 'PCPlus4E'.
+# ** Error: rtl/Data Path/data_path.sv(74): (vlog-2730) Undefined variable: 'RegWriteE'.
+# ** Error: rtl/Data Path/data_path.sv(75): (vlog-2730) Undefined variable: 'MemtoRegE'.
+# ** Error: rtl/Data Path/data_path.sv(76): (vlog-2730) Undefined variable: 'BranchE'.
+# ** Error: rtl/Data Path/data_path.sv(77): (vlog-2730) Undefined variable: 'ALUControlE'.
+# ** Error: rtl/Data Path/data_path.sv(78): (vlog-2730) Undefined variable: 'ALUSrcE'.
+# ** Error: rtl/Data Path/data_path.sv(79): (vlog-2730) Undefined variable: 'RegDstE'.
+# ** Error: rtl/Data Path/data_path.sv(93): (vlog-2730) Undefined variable: 'WriteRegW'.
+# ** Error: rtl/Data Path/data_path.sv(118): (vlog-2730) Undefined variable: 'ALUOutM'.
+# ** Error: rtl/Data Path/data_path.sv(119): (vlog-2730) Undefined variable: 'ZeroM'.
+# ** Error: rtl/Data Path/data_path.sv(119): (vlog-2730) Undefined variable: 'ZeroE'.
+# ** Error: rtl/Data Path/data_path.sv(120): (vlog-2730) Undefined variable: 'WriteDataM'.
+# ** Error: rtl/Data Path/data_path.sv(120): (vlog-2730) Undefined variable: 'WriteDataE'.
+# ** Error: rtl/Data Path/data_path.sv(121): (vlog-2730) Undefined variable: 'WriteRegM'.
+# ** Error: rtl/Data Path/data_path.sv(124): (vlog-2730) Undefined variable: 'RegWriteM'.
+# ** Error: rtl/Data Path/data_path.sv(125): (vlog-2730) Undefined variable: 'MemtoRegM'.
+# ** Error: rtl/Data Path/data_path.sv(126): (vlog-2730) Undefined variable: 'MemWriteM'.
+# ** Error: rtl/Data Path/data_path.sv(127): (vlog-2730) Undefined variable: 'BranchM'.
+# ** Error (suppressible): rtl/Data Path/data_path.sv(185): (vlog-2388) 'RegWriteW' already declared in this scope (data_path) at rtl/Data Path/data_path.sv(92).
+# ** Error (suppressible): rtl/Data Path/data_path.sv(186): (vlog-2388) 'ResultW' already declared in this scope (data_path) at rtl/Data Path/data_path.sv(94).
+# ** Error (suppressible): rtl/Data Path/data_path.sv(187): (vlog-2388) 'WriteRegW' already declared in this scope (data_path) at rtl/Data Path/data_path.sv(93).
+# -- Compiling module InstructionMemory
+# -- Compiling module pc_register
+# -- Compiling module register_file
+# -- Compiling module sign_extender
+# -- Compiling module top_tb
+# End time: 16:28:48 on Mar 13,2026, Elapsed time: 0:00:00
+# Errors: 31, Warnings: 0
+# ** Error: C:/questasim64_2021.1/win64/vlog failed.
+# Error in macro ././scripts/run.do line 3
+# C:/questasim64_2021.1/win64/vlog failed.
+#     while executing
+# "vlog -sv -f ./scripts/files.f"
+do ./scripts/run.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Errors: 0, Warnings: 1
+# QuestaSim-64 vlog 2021.1 Compiler 2021.01 Jan 19 2021
+# Start time: 16:31:32 on Mar 13,2026
+# vlog -reportprogress 300 -sv -f ./scripts/files.f 
+# -- Compiling module top
+# -- Compiling module alu_decoder
+# -- Compiling module control_unit
+# -- Compiling module main_decoder
+# -- Compiling module alu
+# -- Compiling module data_mem
+# ** Error: rtl/Data Path/data_mem.sv(19): (vlog-2110) Illegal reference to net "addr".
+# -- Compiling module data_path
+# ** Error: rtl/Data Path/data_path.sv(94): (vlog-2730) Undefined variable: 'SignImmD'.
+# ** Error: rtl/Data Path/data_path.sv(115): (vlog-2730) Undefined variable: 'WriteRegW'.
+# ** Error: rtl/Data Path/data_path.sv(129): (vlog-2730) Undefined variable: 'ZeroE'.
+# ** Error: rtl/Data Path/data_path.sv(130): (vlog-2730) Undefined variable: 'WriteDataE'.
+# ** Error: rtl/Data Path/data_path.sv(194): (vlog-2730) Undefined variable: 'MemtoRegW'.
+# ** Error: rtl/Data Path/data_path.sv(195): (vlog-2730) Undefined variable: 'ALUOutW'.
+# ** Error: rtl/Data Path/data_path.sv(196): (vlog-2730) Undefined variable: 'ReadDataW'.
+# -- Compiling module InstructionMemory
+# -- Compiling module pc_register
+# -- Compiling module register_file
+# -- Compiling module sign_extender
+# -- Compiling module top_tb
+# End time: 16:31:32 on Mar 13,2026, Elapsed time: 0:00:00
+# Errors: 8, Warnings: 0
+# ** Error: C:/questasim64_2021.1/win64/vlog failed.
+# Error in macro ././scripts/run.do line 3
+# C:/questasim64_2021.1/win64/vlog failed.
+#     while executing
+# "vlog -sv -f ./scripts/files.f"
+do ./scripts/run.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Errors: 0, Warnings: 1
+# QuestaSim-64 vlog 2021.1 Compiler 2021.01 Jan 19 2021
+# Start time: 16:38:18 on Mar 13,2026
+# vlog -reportprogress 300 -sv -f ./scripts/files.f 
+# -- Compiling module top
+# -- Compiling module alu_decoder
+# -- Compiling module control_unit
+# -- Compiling module main_decoder
+# -- Compiling module alu
+# -- Compiling module data_mem
+# ** Error: rtl/Data Path/data_mem.sv(19): (vlog-2110) Illegal reference to net "addr".
+# -- Compiling module data_path
+# ** Error: rtl/Data Path/data_path.sv(198): (vlog-2110) Illegal reference to net "RegWriteW".
+# -- Compiling module InstructionMemory
+# -- Compiling module pc_register
+# -- Compiling module register_file
+# -- Compiling module sign_extender
+# -- Compiling module top_tb
+# End time: 16:38:18 on Mar 13,2026, Elapsed time: 0:00:00
+# Errors: 2, Warnings: 0
+# ** Error: C:/questasim64_2021.1/win64/vlog failed.
+# Error in macro ././scripts/run.do line 3
+# C:/questasim64_2021.1/win64/vlog failed.
+#     while executing
+# "vlog -sv -f ./scripts/files.f"
+do ./scripts/run.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Errors: 0, Warnings: 1
+# QuestaSim-64 vlog 2021.1 Compiler 2021.01 Jan 19 2021
+# Start time: 16:40:52 on Mar 13,2026
+# vlog -reportprogress 300 -sv -f ./scripts/files.f 
+# -- Compiling module top
+# -- Compiling module alu_decoder
+# -- Compiling module control_unit
+# -- Compiling module main_decoder
+# -- Compiling module alu
+# -- Compiling module data_mem
+# ** Error: rtl/Data Path/data_mem.sv(19): (vlog-2110) Illegal reference to net "addr".
+# -- Compiling module data_path
+# -- Compiling module InstructionMemory
+# -- Compiling module pc_register
+# -- Compiling module register_file
+# -- Compiling module sign_extender
+# -- Compiling module top_tb
+# End time: 16:40:52 on Mar 13,2026, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0
+# ** Error: C:/questasim64_2021.1/win64/vlog failed.
+# Error in macro ././scripts/run.do line 3
+# C:/questasim64_2021.1/win64/vlog failed.
+#     while executing
+# "vlog -sv -f ./scripts/files.f"
+do ./scripts/run.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Errors: 0, Warnings: 1
+# QuestaSim-64 vlog 2021.1 Compiler 2021.01 Jan 19 2021
+# Start time: 16:43:01 on Mar 13,2026
+# vlog -reportprogress 300 -sv -f ./scripts/files.f 
+# -- Compiling module top
+# -- Compiling module alu_decoder
+# -- Compiling module control_unit
+# -- Compiling module main_decoder
+# -- Compiling module alu
+# -- Compiling module data_mem
+# ** Error: rtl/Data Path/data_mem.sv(19): (vlog-2110) Illegal reference to net "addr".
+# -- Compiling module data_path
+# -- Compiling module InstructionMemory
+# -- Compiling module pc_register
+# -- Compiling module register_file
+# -- Compiling module sign_extender
+# -- Compiling module top_tb
+# End time: 16:43:01 on Mar 13,2026, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0
+# ** Error: C:/questasim64_2021.1/win64/vlog failed.
+# Error in macro ././scripts/run.do line 3
+# C:/questasim64_2021.1/win64/vlog failed.
+#     while executing
+# "vlog -sv -f ./scripts/files.f"
+exit

@@ -1,0 +1,35 @@
+module control_unit
+#(
+    parameter OPCODE_FIELD = 6 ,
+    parameter FUNCT_FIELD = 6 
+)
+(
+    input  logic [OPCODE_FIELD-1:0] Opcode , // Opcode Field
+    input  logic [FUNCT_FIELD-1:0] Funct , // Function field
+    output logic RegWriteD, MemtoRegD, MemWriteD, 
+    output logic BranchD, ALUControlD, ALUSrcD,RegDStD 
+);
+
+//Internal Signals
+logic [1:0] ALUOp;
+
+//Main Decoder
+main_decoder Main_Decoder(
+    .Opcode(Opcode),
+    .BranchD(BranchD),
+    .MemtoRegD(MemtoRegD),
+    .ALUSrcD(ALUSrcD),
+    .RegDstD(RegDstD),
+    .RegWriteD(RegWriteD),
+    .MemWriteD(MemWriteD),
+    .ALUOp(ALUOp)
+);
+
+//ALU Decoder
+alu_decoder ALU_Decoder(
+    .Funct(Funct),
+    .ALUOp(ALUOp),
+    .ALUControl(ALUControlD)
+); 
+
+endmodule

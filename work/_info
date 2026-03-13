@@ -1,0 +1,275 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dF:/Electronics/Projects/Processors/Piplined_Single_Cycle_MIPS
+valu
+Z1 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+Z2 !s110 1773412981
+!i10b 1
+!s100 0gT3UAH[inlYH@LhEV1z>3
+IZG6OJNce<0UN^;?jEH>kf3
+S1
+R0
+w1770399926
+8rtl/Data Path/alu.sv
+Frtl/Data Path/alu.sv
+!i122 6
+L0 2 39
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+Z4 OL;L;2021.1;73
+r1
+!s85 0
+31
+Z5 !s108 1773412981.000000
+!s107 tb/top_tb.sv|rtl/Data Path/sign_extender.sv|rtl/Data Path/register_file.sv|rtl/Data Path/pc_register.sv|rtl/Data Path/Instr_mem.sv|rtl/Data Path/data_path.sv|rtl/Data Path/data_mem.sv|rtl/Data Path/alu.sv|rtl/Control Unit/main_decoder.sv|rtl/Control Unit/control_unit.sv|rtl/Control Unit/alu_decoder.sv|rtl/top.sv|
+Z6 !s90 -reportprogress|300|-sv|-f|./scripts/files.f|
+!i113 0
+Z7 o-sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z8 tCvgOpt 0
+valu_decoder
+R1
+R2
+!i10b 1
+!s100 ACW`zQ<j_14NY`>:IBCz12
+I6S0z2UW;o9L=[TU;=`]_72
+S1
+R0
+w1773405841
+8rtl/Control Unit/alu_decoder.sv
+Frtl/Control Unit/alu_decoder.sv
+!i122 6
+L0 1 29
+R3
+R4
+r1
+!s85 0
+31
+R5
+Z9 !s107 tb/top_tb.sv|rtl/Data Path/sign_extender.sv|rtl/Data Path/register_file.sv|rtl/Data Path/pc_register.sv|rtl/Data Path/Instr_mem.sv|rtl/Data Path/data_path.sv|rtl/Data Path/data_mem.sv|rtl/Data Path/alu.sv|rtl/Control Unit/main_decoder.sv|rtl/Control Unit/control_unit.sv|rtl/Control Unit/alu_decoder.sv|rtl/top.sv|
+R6
+!i113 0
+R7
+R8
+vcontrol_unit
+R1
+R2
+!i10b 1
+!s100 nKJMFJ40fDPU2:^RboC<c3
+Io[8K0fE4[<nIJ;R2712<82
+S1
+R0
+w1773411920
+8rtl/Control Unit/control_unit.sv
+Frtl/Control Unit/control_unit.sv
+!i122 6
+L0 1 35
+R3
+R4
+r1
+!s85 0
+31
+R5
+R9
+R6
+!i113 0
+R7
+R8
+vdata_path
+R1
+R2
+!i10b 1
+!s100 P:jiXo>i7Y8OFELhcZC4z2
+IF:G^Z^McF;_i0];7SB7;I1
+S1
+R0
+w1773412834
+8rtl/Data Path/data_path.sv
+Frtl/Data Path/data_path.sv
+!i122 6
+L0 1 218
+R3
+R4
+r1
+!s85 0
+31
+R5
+R9
+R6
+!i113 0
+R7
+R8
+vInstructionMemory
+R1
+R2
+!i10b 1
+!s100 6nPcBM<C]04LJ=Z89oHzh3
+IFT1<HjOXORP?R]2Y=o0]W0
+S1
+R0
+w1773406664
+8rtl/Data Path/Instr_mem.sv
+Frtl/Data Path/Instr_mem.sv
+!i122 6
+L0 1 20
+R3
+R4
+r1
+!s85 0
+31
+R5
+R9
+R6
+!i113 0
+R7
+R8
+n@instruction@memory
+vmain_decoder
+R1
+R2
+!i10b 1
+!s100 6;iTJH[maHm@B9aSB4dl<3
+IzDCn;aJM8`]Oem<hdSSGc1
+S1
+R0
+w1773405869
+8rtl/Control Unit/main_decoder.sv
+Frtl/Control Unit/main_decoder.sv
+!i122 6
+L0 1 68
+R3
+R4
+r1
+!s85 0
+31
+R5
+R9
+R6
+!i113 0
+R7
+R8
+vpc_register
+R1
+R2
+!i10b 1
+!s100 ^[7<L6`z=5?NMBK0=7Mnb0
+I<`Yn8W5^;@4HbiZZ?lMFd3
+S1
+R0
+w1773406868
+8rtl/Data Path/pc_register.sv
+Frtl/Data Path/pc_register.sv
+!i122 6
+L0 1 17
+R3
+R4
+r1
+!s85 0
+31
+R5
+R9
+R6
+!i113 0
+R7
+R8
+vregister_file
+R1
+R2
+!i10b 1
+!s100 QbfCa`h]G]F4RmWfF8jjP3
+Ig7`FjABb5ZYPPZYRFF;BR1
+S1
+R0
+w1773407650
+8rtl/Data Path/register_file.sv
+Frtl/Data Path/register_file.sv
+!i122 6
+L0 1 37
+R3
+R4
+r1
+!s85 0
+31
+R5
+R9
+R6
+!i113 0
+R7
+R8
+vsign_extender
+R1
+R2
+!i10b 1
+!s100 HaRDI5]7N7dmf5DgD^3Dc1
+Iio:1n^]n>_ZhlUE4H1[H@0
+S1
+R0
+w1773407968
+8rtl/Data Path/sign_extender.sv
+Frtl/Data Path/sign_extender.sv
+!i122 6
+L0 1 10
+R3
+R4
+r1
+!s85 0
+31
+R5
+R9
+R6
+!i113 0
+R7
+R8
+vtop
+R1
+R2
+!i10b 1
+!s100 BAc]5LnHd>J9Ud9Ufb`FR1
+I2OfJd7KDQ_MJ8@bb9N<Fc3
+S1
+R0
+w1773410606
+8rtl/top.sv
+Frtl/top.sv
+!i122 6
+L0 1 54
+R3
+R4
+r1
+!s85 0
+31
+R5
+R9
+R6
+!i113 0
+R7
+R8
+vtop_tb
+R1
+R2
+!i10b 1
+!s100 KV0RIWX>87QUDhSdVVcca1
+I^c=M4?e8c`AzHT__Uj>DZ2
+S1
+R0
+w1773410730
+8tb/top_tb.sv
+Ftb/top_tb.sv
+!i122 6
+L0 2 22
+R3
+R4
+r1
+!s85 0
+31
+R5
+R9
+R6
+!i113 0
+R7
+R8

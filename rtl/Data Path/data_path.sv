@@ -8,7 +8,8 @@ module data_path
 (
     input  logic clk, arst,
     input  logic RegWriteD, MemtoRegD, MemWriteD,
-    input  logic BranchD, ALUControlD, ALUSrcD,RegDstD,
+    input  logic BranchD, ALUSrcD,RegDstD,
+    input  logic[2:0] ALUControlD ,
     output logic[OPCODE_FIELD-1:0] Opcode ,
     output logic[FUNCT_FIELD-1:0] Funct
 );
@@ -45,7 +46,7 @@ logic [4:0] WriteRegM ;
 logic ZeroM ;
 
 //WB - Stage : Internal Signals
-logic [DATA_WIDTH-1:0]ALUOutW, ReadDataW;
+logic [DATA_WIDTH-1:0]ALUOutW, ReadDataW,ResultW;
 logic MemtoRegW, RegWriteW ;
 logic [4:0] WriteRegW ;
 
@@ -55,7 +56,7 @@ always_ff @(posedge clk, posedge arst) begin
         InstrD <= ReadDataF ;
         PCPlus4D <= PCPlus4F ;
     end
-    else begin // ????????????
+    else begin
         InstrD <= 'd0 ;
         PCPlus4D <= 'd0 ;
     end
@@ -82,7 +83,7 @@ mux_2x1 #(.DATA_WIDTH(ADDR_WIDTH)) mux_0_F
     .x0(PCPlus4F),
     .x1(PCBranchM) ,
     .sel(PCSrcM) ,
-    .f(next_pc) 
+    .f(next_pcf) 
 );
 
 assign PCPlus4F = PCF + 'd4 ; //Advance the program counter 
@@ -105,11 +106,21 @@ always_ff @(posedge clk , posedge arst) begin
         ALUSrcE <= ALUSrcD ;
         RegDstE <= RegDstD ;
     end
+    else begin
+        SignImmE  <= 'd0 ;
+        PCPlus4E  <= 'd0 ;
+        RegWriteE <= 'd0 ;
+        MemtoRegE <= 'd0 ;
+        BranchE <= 'd0 ;
+        ALUControlE <= 'd0 ;
+        ALUSrcE <= 'd0 ;
+        RegDstE <= 'd0 ;
+    end
 end
 
 
 //Register File
-register_file #(.DATA_WIDTH(DATA_WIDTH),.ADDR_WIDTH(ADDR_WIDTH)) RegFile(
+register_file RegFile(
     .clk(clk),
     .arst(arst) , 
     .A1(InstrD[25:21]),
@@ -141,8 +152,11 @@ always_ff @(posedge clk , posedge arst) begin
         MemWriteM <= MemWriteE ;
         BranchM  <= BranchE ;
     end
-    else begin // ????????
-        
+    else begin
+        RegWriteM <= 'd0 ;
+        MemtoRegM <= 'd0 ;
+        MemWriteM <= 'd0 ;
+        BranchM   <= 'd0 ;
     end
 end
 
@@ -165,7 +179,7 @@ mux_2x1 #(.DATA_WIDTH(DATA_WIDTH)) mux_1_E
 );
 
 // Mux 2x1 : to choose between RtE & RdE 
-mux_2x1 #(.DATA_WIDTH(DATA_WIDTH)) mux_2_E
+mux_2x1 #(.DATA_WIDTH(5)) mux_2_E
 (   
     .x0(RtE),
     .x1(RdE) ,
@@ -201,8 +215,9 @@ always_ff @(posedge clk, posedge arst) begin
         ReadDataW <= ReadDataM ;
         WriteRegW <= WriteRegM ;
     end
-    else begin //???????
-    
+    else begin
+        RegWriteW <= 'd0 ;
+        MemtoRegW <= 'd0 ;
     end
 end
 

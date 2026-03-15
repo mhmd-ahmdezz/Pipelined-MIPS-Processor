@@ -16,11 +16,13 @@ logic [(DATA_WIDTH/4)-1:0] data_mem [255:0] ;
 
 always_ff @(posedge clk) begin
     if(WE) 
-        {>>{data_mem[addr +: 4]}} <= WD ;
-    else 
-        data_mem[addr] <= data_mem[addr];
+        {data_mem[addr+3],data_mem[addr+2],data_mem[addr+1],data_mem[addr]} <= WD ;
+        // {>>{data_mem[addr +: 4]}} <= WD ;
+    // else 
+    //     data_mem[addr] <= data_mem[addr];
 end
 
-assign ReadData = {>>{data_mem[addr +: 4]}};
+// assign ReadData = {>>{data_mem[addr +: 4]}};
+assign ReadData = {data_mem[addr+3],data_mem[addr+2],data_mem[addr+1],data_mem[addr]};
 
 endmodule

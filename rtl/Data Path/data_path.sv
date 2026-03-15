@@ -25,11 +25,12 @@ logic [ADDR_WIDTH-1:0] PCPlus4F, PCBranchM;
 //ID - Stage : Internal Signals
 logic [DATA_WIDTH-1:0] InstrD, PCPlus4D;
 logic [DATA_WIDTH-1:0] RegFile_ReadData1_D,RegFile_ReadData2_D;
+logic [DATA_WIDTH-1:0] RegFile_ReadData1_E,RegFile_ReadData2_E;
 logic [DATA_WIDTH-1:0] SignImmD ;
 
 //EX - Stage : Internal Signals
 logic [DATA_WIDTH-1:0] SrcAE, SrcBE;
-logic [4:0] RtE, RdE, WriteRegE ;
+logic [4:0] RtE, RsE, RdE, WriteRegE ;
 logic [DATA_WIDTH-1:0] SignImmE , PCPlus4E ;
 logic [DATA_WIDTH-1:0] WriteDataE;
 logic RegWriteE, MemtoRegE, MemWriteE, BranchE;
@@ -92,8 +93,9 @@ assign PCPlus4F = PCF + 'd4 ; //Advance the program counter
 //ID - Stage : Instruction Decode Stage
 always_ff @(posedge clk , posedge arst) begin
     if(!arst) begin
-        SrcAE <= RegFile_ReadData1_D ;
-        WriteDataE <= RegFile_ReadData2_D ;
+        RegFile_ReadData1_E <= RegFile_ReadData1_D ;
+        RegFile_ReadData2_E <= RegFile_ReadData2_D ;
+        RsE <= InstrD[25:21] ;
         RtE <= InstrD[20:16] ;
         RdE <= InstrD[15:11] ;
         // Control Signals 
@@ -231,5 +233,41 @@ mux_2x1 #(.DATA_WIDTH(DATA_WIDTH)) mux_3_W
     .sel(MemtoRegW) ,
     .f(ResultW) 
 );
+
+// Hazards Detection Unit (HDU):
+logic [1:0] ForwardAE, ForwardBE ;
+
+hazard_detection_unit #(.DATA_WIDTH(DATA_WIDTH),.ADDR_WIDTH(ADDR_WIDTH)) HDU
+(
+    .rsE(RsE),
+    .rtE(RtE),
+    .rdM(WriteRegM),
+    .rdW(WriteRegW),
+    .RegWriteM(RegWriteM),
+    .RegWriteW(RegWriteW),
+    .ForwardAE(ForwardAE),
+    .ForwardBE(ForwardBE)
+);
+
+
+// Forwarding Multiplexors
+mux_4x1 #(.DATA_WIDTH(DATA_WIDTH)) fwd_mux_0(
+    .x0(RegFile_ReadData1_E),
+    .x1(ResultW),
+    .x2(ALUOutM),
+    .x3('d0),
+    .sel(ForwardAE),
+    .f(SrcAE)
+);
+
+mux_4x1 #(.DATA_WIDTH(DATA_WIDTH)) fwd_mux_1(
+    .x0(RegFile_ReadData2_E),
+    .x1(ResultW),
+    .x2(ALUOutM),
+    .x3('d0),
+    .sel(ForwardBE),
+    .f(WriteDataE)
+);
+
 
 endmodule

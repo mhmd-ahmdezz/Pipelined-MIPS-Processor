@@ -6,6 +6,7 @@ module main_decoder
     parameter [OPCODE_FIELD-1:0] R_TYPE = 6'b000000 ,
     parameter [OPCODE_FIELD-1:0] LW     = 6'b100011 ,
     parameter [OPCODE_FIELD-1:0] SW     = 6'b101011 ,
+    parameter [OPCODE_FIELD-1:0] ADDI   = 6'b001000 ,
     parameter [OPCODE_FIELD-1:0] BEQ    = 6'b000100 
 )
 (
@@ -52,6 +53,15 @@ always_comb begin
             MemWriteD = 1'b0  ;
             MemtoRegD = 1'b0  ;
             ALUOp     = 2'b01 ;
+        end
+        ADDI    : begin
+            RegWriteD = 1'b1  ;
+            RegDstD   = 1'b0  ;
+            ALUSrcD   = 1'b1  ;
+            BranchD   = 1'b0  ;
+            MemWriteD = 1'b0  ;
+            MemtoRegD = 1'b0  ;
+            ALUOp     = 2'b00 ;
         end
         default : begin
             RegWriteD = 1'b0  ;

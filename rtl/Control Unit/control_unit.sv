@@ -8,7 +8,7 @@ module control_unit
     input  logic [FUNCT_FIELD-1:0] Funct , // Function field
     output logic RegWriteD, MemtoRegD, MemWriteD, 
     output logic [2:0] ALUControlD,
-    output logic BranchD, ALUSrcD,RegDStD 
+    output logic BranchD, ALUSrcD,RegDstD
 );
 
 //Internal Signals

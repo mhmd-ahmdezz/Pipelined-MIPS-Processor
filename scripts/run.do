@@ -63,5 +63,13 @@ sim:/top_tb/DUT/DataPath/RegWriteW \
 sim:/top_tb/DUT/DataPath/WriteRegW \
 sim:/top_tb/DUT/DataPath/PCSrcM
 add wave -position insertpoint  \
+sim:/top_tb/DUT/DataPath/RegFile/A1 \
+sim:/top_tb/DUT/DataPath/RegFile/A2 \
+sim:/top_tb/DUT/DataPath/RegFile/RD1 \
+sim:/top_tb/DUT/DataPath/RegFile/RD2 \
+sim:/top_tb/DUT/DataPath/RegFile/WE3 \
+sim:/top_tb/DUT/DataPath/RegFile/A3 \
+sim:/top_tb/DUT/DataPath/RegFile/WD3
+add wave -position insertpoint  \
 sim:/top_tb/DUT/DataPath/RegFile/reg_file
 run -all

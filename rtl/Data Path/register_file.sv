@@ -23,6 +23,7 @@ always_ff @(posedge clk , posedge arst) begin
         // Trying to reset the whole register file
         reg_file[SP] <= 'h7fffeffc ;
         reg_file[GP] <= 'h10008000 ;
+        reg_file[0]  <= 'h0 ;
     end
     else if(WE3)
         reg_file[A3] <= WD3 ;

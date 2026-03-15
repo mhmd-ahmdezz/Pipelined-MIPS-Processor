@@ -95,7 +95,7 @@ always_ff @(posedge clk , posedge arst) begin
         SrcAE <= RegFile_ReadData1_D ;
         WriteDataE <= RegFile_ReadData2_D ;
         RtE <= InstrD[20:16] ;
-        RtE <= InstrD[15:11] ;
+        RdE <= InstrD[15:11] ;
         // Control Signals 
         SignImmE <= SignImmD ;
         PCPlus4E <= PCPlus4D ;
@@ -118,6 +118,8 @@ always_ff @(posedge clk , posedge arst) begin
     end
 end
 
+assign Opcode = InstrD[31:26] ;
+assign Funct  = InstrD[5:0]   ;
 
 //Register File
 register_file RegFile(

@@ -5,8 +5,10 @@ module hazard_detection_unit
 )
 (
     input  logic [4:0] rsE, rtE, rdM, rdW, // rsE, rtE, Source Register in Ex - stage, rdM: Destination Register in Mem-Stage
-    input  logic RegWriteM, RegWriteW,
-    output logic [1:0] ForwardAE, ForwardBE
+    input  logic [4:0] rsD, rtD,    // rsD, rtD, Source Register in ID - stage, rtE : Destination Register in EX-Stage
+    input  logic RegWriteM, RegWriteW,MemtoRegE,
+    output logic [1:0] ForwardAE, ForwardBE,
+    output logic FlushE,StallD, StallF // FlushE Synchronous Reset/Clear for ID/EX pipeline register
 );
 
 //Forwarding from Mem - Stage has a priority over WB stage
@@ -33,6 +35,18 @@ always_comb begin
         ForwardBE = 2'b01 ; // Forward from WB to Ex
     else 
         ForwardBE = 2'b00 ;
+end
+
+// Load Word Data dependences (Solving Data Hazards with stalls)
+always_comb begin
+    if( ((rsD == rtE) || (rtD == rtE)) && MemtoRegE ) begin
+        {StallF,StallD} = 2'b00 ;
+        FlushE = 1'b1 ;
+    end
+    else begin
+        {StallF,StallD} = 2'b11 ;
+        FlushE = 1'b0 ;
+    end
 end
 
 endmodule

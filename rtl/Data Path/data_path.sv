@@ -51,11 +51,19 @@ logic [DATA_WIDTH-1:0]ALUOutW, ReadDataW,ResultW;
 logic MemtoRegW, RegWriteW ;
 logic [4:0] WriteRegW ;
 
+//Hazard Detection Unit: Internal Signals
+logic FlushE,StallD,StallF ;
+
+
 //IF - Stage : Instruction Fetch Stage
 always_ff @(posedge clk, posedge arst) begin
     if(!arst) begin
         InstrD <= ReadDataF ;
         PCPlus4D <= PCPlus4F ;
+    end
+    else if(!StallD) begin
+        InstrD <= InstrD ;
+        PCPlus4D <= PCPlus4D ;
     end
     else begin
         InstrD <= 'd0 ;
@@ -74,6 +82,7 @@ pc_register #(.DATA_WIDTH(ADDR_WIDTH)) program_counter
 (
     .clk(clk), 
     .arst(arst),
+    .En(StallF),
     .next_pc(next_pcf) ,
     .current_pc(PCF) 
 );
@@ -98,15 +107,25 @@ always_ff @(posedge clk , posedge arst) begin
         RsE <= InstrD[25:21] ;
         RtE <= InstrD[20:16] ;
         RdE <= InstrD[15:11] ;
-        // Control Signals 
         SignImmE <= SignImmD ;
         PCPlus4E <= PCPlus4D ;
+        // Control Signals 
         RegWriteE <= RegWriteD ;
         MemtoRegE <= MemtoRegD ;
-        BranchE <= BranchD ;
+        MemWriteE <= MemWriteD ;
         ALUControlE <= ALUControlD ;
         ALUSrcE <= ALUSrcD ;
         RegDstE <= RegDstD ;
+        BranchE <= BranchD ;
+    end
+    else if(FlushE) begin
+        RsE <= 'd0 ;
+        RtE <= 'd0 ;
+        RdE <= 'd0 ;
+        RegWriteE <= 1'b0 ;
+        MemWriteE <= 1'b0 ;
+        BranchE <= 1'b0 ;
+
     end
     else begin
         SignImmE  <= 'd0 ;
@@ -243,10 +262,16 @@ hazard_detection_unit #(.DATA_WIDTH(DATA_WIDTH),.ADDR_WIDTH(ADDR_WIDTH)) HDU
     .rtE(RtE),
     .rdM(WriteRegM),
     .rdW(WriteRegW),
+    .rsD(InstrD[25:21]),
+    .rtD(InstrD[20:16]),
     .RegWriteM(RegWriteM),
     .RegWriteW(RegWriteW),
+    .MemtoRegE(MemtoRegE),
     .ForwardAE(ForwardAE),
-    .ForwardBE(ForwardBE)
+    .ForwardBE(ForwardBE),
+    .FlushE(FlushE),
+    .StallD(StallD),
+    .StallF(StallF)
 );
 
 

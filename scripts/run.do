@@ -71,5 +71,7 @@ sim:/top_tb/DUT/DataPath/RegFile/WE3 \
 sim:/top_tb/DUT/DataPath/RegFile/A3 \
 sim:/top_tb/DUT/DataPath/RegFile/WD3
 add wave -position insertpoint  \
-sim:/top_tb/DUT/DataPath/RegFile/reg_file
+sim:/top_tb/DUT/DataPath/RegFile/reg_file \
+sim:/top_tb/DUT/DataPath/data_mem/data_mem
+add wave -position insertpoint sim:/top_tb/DUT/DataPath/HDU/*
 run -all

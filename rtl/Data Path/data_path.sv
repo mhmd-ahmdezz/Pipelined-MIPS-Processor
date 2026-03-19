@@ -52,7 +52,7 @@ logic [4:0] WriteRegW ;
 //Hazard Detection Unit: Internal Signals
 logic FlushE,StallD,StallF ;
 logic [1:0] ForwardAE, ForwardBE ;
-logic ForwardAD, ForwardBD ;
+logic [1:0] ForwardAD, ForwardBD ;
 
 
 //IF - Stage : Instruction Fetch Stage
@@ -182,18 +182,22 @@ register_file RegFile(
     .WD3(ResultW) 
 );
 
-mux_2x1 #(.DATA_WIDTH(DATA_WIDTH)) mux_0_D
+mux_4x1 #(.DATA_WIDTH(DATA_WIDTH)) mux_0_D
 (   
     .x0(RegFile_ReadData1_D),
-    .x1(ALUOutM) ,
+    .x1(ResultW) ,
+    .x2(ALUOutM),
+    .x3('d0),
     .sel(ForwardAD) ,
     .f(mux_0_D_out) 
 );
 
-mux_2x1 #(.DATA_WIDTH(DATA_WIDTH)) mux_1_D
+mux_4x1 #(.DATA_WIDTH(DATA_WIDTH)) mux_1_D
 (   
     .x0(RegFile_ReadData2_D),
-    .x1(ALUOutM) ,
+    .x1(ResultW),
+    .x2(ALUOutM),
+    .x3('d0),
     .sel(ForwardBD) ,
     .f(mux_1_D_out) 
 );

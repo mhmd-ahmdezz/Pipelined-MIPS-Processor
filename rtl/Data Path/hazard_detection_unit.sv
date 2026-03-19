@@ -10,7 +10,7 @@ module hazard_detection_unit
     input  logic MemtoRegE, MemtoRegM, BranchD,  
     input  logic [4:0]WriteRegM, WriteRegE, WriteRegW,
     output logic [1:0] ForwardAE, ForwardBE, // RAW and Lw data dependences forwarding
-    output logic ForwardAD, ForwardBD, // Control Hazards
+    output logic [1:0] ForwardAD, ForwardBD, // Control Hazards
     output logic FlushE,StallD, StallF // FlushE Synchronous Reset/Clear for ID/EX pipeline register
 );
 
@@ -59,7 +59,25 @@ assign StallF = branchstall || lwstall ;
 assign FlushE = branchstall || lwstall ;
 
 //Forwarding
-assign ForwardAD = (rsD != 0) && (rsD == WriteRegM) && RegWriteM ;
-assign ForwardBD = (rtD != 0) && (rtD == WriteRegM) && RegWriteM ;
+always_comb begin
+    if((rsD != 0) && (rsD == WriteRegM) && (RegWriteM)) 
+        ForwardAD = 2'b10 ; // Forward from Mem to ID
+    else if((rsD != 0) && (rsD == WriteRegW) && (RegWriteW))
+        ForwardAD = 2'b01 ; // Forward from WB to ID
+    else 
+        ForwardAD = 2'b00 ;
+end
+
+always_comb begin
+    if((rtD != 0) && (rtD == WriteRegM) && (RegWriteM)) 
+        ForwardBD = 2'b10 ; // Forward from Mem to ID
+    else if((rtD != 0) && (rtD == WriteRegW) && (RegWriteW))
+        ForwardBD = 2'b01 ; // Forward from WB to ID
+    else 
+        ForwardBD = 2'b00 ;
+end
+
+// assign ForwardAD = (rsD != 0) && (rsD == WriteRegM) && RegWriteM ;
+// assign ForwardBD = (rtD != 0) && (rtD == WriteRegM) && RegWriteM ;
 
 endmodule

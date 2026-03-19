@@ -2,7 +2,7 @@
 
 # -------- Paths --------
 set MARS_JAR "F:/Electronics/Computer Organization/Mars4_5.jar"
-set ASM_FILE "./software/lw_data_dependence_code.asm"
+set ASM_FILE "./software/complex_control_hazard_code.asm"
 set OUT_DIR  "./tb/Golden_Model"
 
 puts "Running MARS..."

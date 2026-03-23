@@ -8,7 +8,7 @@ module data_path
 (
     input  logic clk, arst,
     input  logic RegWriteD, MemtoRegD, MemWriteD,
-    input  logic BranchD, ALUSrcD,RegDstD,
+    input  logic BranchD, ALUSrcD,RegDstD, JumpD,
     input  logic[2:0] ALUControlD ,
     output logic[OPCODE_FIELD-1:0] Opcode ,
     output logic[FUNCT_FIELD-1:0] Funct
@@ -19,10 +19,11 @@ module data_path
 //IF - Stage : Internal Signals
 logic [ADDR_WIDTH-1:0] PCF, next_pcf,PCPlus4F;
 logic [DATA_WIDTH-1:0] ReadDataF ;
+logic [DATA_WIDTH-1:0] mux_1_F_out ;
 
 
 //ID - Stage : Internal Signals
-logic [DATA_WIDTH-1:0] InstrD, PCPlus4D, PCBranchD;
+logic [DATA_WIDTH-1:0] InstrD, PCPlus4D, PCBranchD, PCJumpD;
 logic [DATA_WIDTH-1:0] RegFile_ReadData1_D,RegFile_ReadData2_D;
 logic [DATA_WIDTH-1:0] mux_0_D_out,mux_1_D_out;
 logic [DATA_WIDTH-1:0] RegFile_ReadData1_E,RegFile_ReadData2_E;
@@ -75,7 +76,7 @@ always_ff @(posedge clk, posedge arst) begin
         InstrD <= InstrD ;
         PCPlus4D <= PCPlus4D ;
     end
-    else if(PCSrcD) begin
+    else if(PCSrcD || JumpD) begin
         InstrD <= 'd0 ;
         PCPlus4D <= 'd0 ;
     end
@@ -108,10 +109,18 @@ pc_register #(.DATA_WIDTH(ADDR_WIDTH)) program_counter
 //Mux - 0 : to choose between PCBranch or PC+4
 mux_2x1 #(.DATA_WIDTH(ADDR_WIDTH)) mux_0_F
 (   
-    .x0(PCPlus4F),
+    .x0(mux_1_F_out),
     .x1(PCBranchD) ,
     .sel(PCSrcD) ,
     .f(next_pcf) 
+);
+
+mux_2x1 #(.DATA_WIDTH(ADDR_WIDTH)) mux_1_F
+(   
+    .x0(PCPlus4F),
+    .x1(PCJumpD) ,
+    .sel(JumpD) ,
+    .f(mux_1_F_out) 
 );
 
 assign PCPlus4F = PCF + 'd4 ; //Advance the program counter 
@@ -159,6 +168,9 @@ always_ff @(posedge clk , posedge arst) begin
         RegDstE <= 'd0 ;
     end
 end
+
+// JTA = {PC+4[31:28], addr, 00 } , Jump Target Address : Pseudo-direct Addressing Mode
+ assign PCJumpD = {PCPlus4D[31:28],InstrD[25:0],2'b00} ;
 
 // BTA = SignImm * 4 + (PC + 4) , Branch Target Address : PCrelative Addressing Mode
 assign PCBranchD = (SignImmD<<2) + (PCPlus4D) ;

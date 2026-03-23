@@ -2,14 +2,14 @@
 
 # -------- Paths --------
 set MARS_JAR "F:/Electronics/Computer Organization/Mars4_5.jar"
-set ASM_FILE "./software/complex_control_hazard_code.asm"
+set ASM_FILE "./software/Testing_Jump_Instruction_code.asm"
 set OUT_DIR  "./tb/Golden_Model"
 
 puts "Running MARS..."
 
 # -------- Instruction Memory --------
 puts "Generating instruction memory File..."
-exec java -jar $MARS_JAR nc a $ASM_FILE dump .text HexText $OUT_DIR/instr_mem.mem
+exec java -jar $MARS_JAR nc mc CompactTextAtZero a $ASM_FILE dump .text HexText $OUT_DIR/instr_mem.mem
 
 # -------- Register File (raw) --------
 puts "Generating Register File ..."

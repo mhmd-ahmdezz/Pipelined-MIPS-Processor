@@ -7,12 +7,14 @@ module main_decoder
     parameter [OPCODE_FIELD-1:0] LW     = 6'b100011 ,
     parameter [OPCODE_FIELD-1:0] SW     = 6'b101011 ,
     parameter [OPCODE_FIELD-1:0] ADDI   = 6'b001000 ,
-    parameter [OPCODE_FIELD-1:0] BEQ    = 6'b000100 
+    parameter [OPCODE_FIELD-1:0] BEQ    = 6'b000100 ,
+    parameter [OPCODE_FIELD-1:0] J      = 6'b000010 
 )
 (
     input  logic[OPCODE_FIELD-1:0] Opcode ,
-    output logic BranchD , MemtoRegD,ALUSrcD,
-    output logic RegDstD , RegWriteD,MemWriteD,
+    output logic BranchD , MemtoRegD, ALUSrcD,
+    output logic RegDstD , RegWriteD, MemWriteD,
+    output logic JumpD ,
     output logic [1:0] ALUOp
 );
 
@@ -25,7 +27,8 @@ always_comb begin
             BranchD   = 1'b0  ;
             MemWriteD = 1'b0  ;
             MemtoRegD = 1'b0  ;
-            ALUOp     = 2'b10 ; 
+            ALUOp     = 2'b10 ;
+            JumpD     = 1'b0  ; 
         end
         LW    : begin
             RegWriteD = 1'b1  ;
@@ -35,6 +38,7 @@ always_comb begin
             MemWriteD = 1'b0  ;
             MemtoRegD = 1'b1  ;
             ALUOp     = 2'b00 ;
+            JumpD     = 1'b0  ;
         end
         SW    : begin
             RegWriteD = 1'b0  ;
@@ -44,6 +48,7 @@ always_comb begin
             MemWriteD = 1'b1  ;
             MemtoRegD = 1'b0  ;
             ALUOp     = 2'b00 ;
+            JumpD     = 1'b0  ;
         end
         BEQ    : begin
             RegWriteD = 1'b0  ;
@@ -53,6 +58,7 @@ always_comb begin
             MemWriteD = 1'b0  ;
             MemtoRegD = 1'b0  ;
             ALUOp     = 2'b01 ;
+            JumpD     = 1'b0  ;
         end
         ADDI    : begin
             RegWriteD = 1'b1  ;
@@ -62,6 +68,17 @@ always_comb begin
             MemWriteD = 1'b0  ;
             MemtoRegD = 1'b0  ;
             ALUOp     = 2'b00 ;
+            JumpD     = 1'b0  ;
+        end
+        J       : begin 
+            RegWriteD = 1'b0  ;
+            RegDstD   = 1'b0  ;
+            ALUSrcD   = 1'b0  ;
+            BranchD   = 1'b0  ;
+            MemWriteD = 1'b0  ;
+            MemtoRegD = 1'b0  ;
+            ALUOp    = 2'b00 ;
+            JumpD    = 1'b1  ;
         end
         default : begin
             RegWriteD = 1'b0  ;
@@ -71,6 +88,7 @@ always_comb begin
             MemWriteD = 1'b0  ;
             MemtoRegD = 1'b0  ;
             ALUOp     = 2'b00 ;
+            JumpD     = 1'b0  ;
         end
     endcase
 end

@@ -1,5 +1,5 @@
 set MARS_JAR "F:/Electronics/Computer Organization/Mars4_5.jar"
-set ASM_FILE "./software/Testing_RAW_Hazard_code.asm"
+set ASM_FILE "./software/Testing_Jal_Jr_Instructions_code.asm"
 set number_of_cycles_executed [exec java -jar $MARS_JAR mc CompactDataAtZero nc ic $ASM_FILE]
 set number_of_cycles_required [expr 5+($number_of_cycles_executed-1)]
 

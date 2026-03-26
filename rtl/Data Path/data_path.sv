@@ -8,7 +8,7 @@ module data_path
 (
     input  logic clk, arst,
     input  logic RegWriteD, MemtoRegD, MemWriteD,
-    input  logic BranchD, ALUSrcD,RegDstD, JumpD,
+    input  logic BranchD, ALUSrcD,RegDstD, JumpD, JalD,JrD,
     input  logic[2:0] ALUControlD ,
     output logic[OPCODE_FIELD-1:0] Opcode ,
     output logic[FUNCT_FIELD-1:0] Funct
@@ -19,7 +19,7 @@ module data_path
 //IF - Stage : Internal Signals
 logic [ADDR_WIDTH-1:0] PCF, next_pcf,PCPlus4F;
 logic [DATA_WIDTH-1:0] ReadDataF ;
-logic [DATA_WIDTH-1:0] mux_1_F_out ;
+logic [DATA_WIDTH-1:0] mux_1_F_out,mux_2_F_out ;
 
 
 //ID - Stage : Internal Signals
@@ -27,7 +27,8 @@ logic [DATA_WIDTH-1:0] InstrD, PCPlus4D, PCBranchD, PCJumpD;
 logic [DATA_WIDTH-1:0] RegFile_ReadData1_D,RegFile_ReadData2_D;
 logic [DATA_WIDTH-1:0] mux_0_D_out,mux_1_D_out;
 logic [DATA_WIDTH-1:0] RegFile_ReadData1_E,RegFile_ReadData2_E;
-logic [DATA_WIDTH-1:0] SignImmD ;
+logic [DATA_WIDTH-1:0] SignImmD, mux_3_D_out ;
+logic [4:0] mux_2_D_out;
 logic EqualD, PCSrcD ;
 
 //EX - Stage : Internal Signals
@@ -118,9 +119,17 @@ mux_2x1 #(.DATA_WIDTH(ADDR_WIDTH)) mux_0_F
 mux_2x1 #(.DATA_WIDTH(ADDR_WIDTH)) mux_1_F
 (   
     .x0(PCPlus4F),
-    .x1(PCJumpD) ,
+    .x1(mux_2_F_out) ,
     .sel(JumpD) ,
     .f(mux_1_F_out) 
+);
+
+mux_2x1 #(.DATA_WIDTH(ADDR_WIDTH)) mux_2_F
+(   
+    .x0(PCJumpD),
+    .x1(RegFile_ReadData1_D) ,
+    .sel(JrD) ,
+    .f(mux_2_F_out) 
 );
 
 assign PCPlus4F = PCF + 'd4 ; //Advance the program counter 
@@ -189,9 +198,24 @@ register_file RegFile(
     .A2(InstrD[20:16]),
     .RD1(RegFile_ReadData1_D),
     .RD2(RegFile_ReadData2_D),
-    .WE3(RegWriteW) ,  
-    .A3(WriteRegW[4:0])  ,
-    .WD3(ResultW) 
+    .WE3(RegWriteW | JalD) , // To choose write operation due to Jal or ordinary instruction  
+    .A3(mux_2_D_out)  ,
+    .WD3(mux_3_D_out) 
+);
+mux_2x1 #(.DATA_WIDTH(5)) mux_2_D
+(   
+    .x0(WriteRegW),
+    .x1(5'd31) ,
+    .sel(JalD) ,
+    .f(mux_2_D_out) 
+);
+
+mux_2x1 #(.DATA_WIDTH(DATA_WIDTH)) mux_3_D
+(   
+    .x0(ResultW),
+    .x1(PCPlus4D) ,
+    .sel(JalD) ,
+    .f(mux_3_D_out) 
 );
 
 mux_4x1 #(.DATA_WIDTH(DATA_WIDTH)) mux_0_D

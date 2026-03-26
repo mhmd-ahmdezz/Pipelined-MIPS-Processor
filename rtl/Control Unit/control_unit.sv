@@ -8,7 +8,7 @@ module control_unit
     input  logic [FUNCT_FIELD-1:0] Funct , // Function field
     output logic RegWriteD, MemtoRegD, MemWriteD, 
     output logic [2:0] ALUControlD,
-    output logic BranchD, ALUSrcD,RegDstD, JumpD
+    output logic BranchD, ALUSrcD,RegDstD, JumpD, JalD, JrD
 );
 
 //Internal Signals
@@ -17,6 +17,7 @@ logic [1:0] ALUOp;
 //Main Decoder
 main_decoder Main_Decoder(
     .Opcode(Opcode),
+    .Funct(Funct),
     .BranchD(BranchD),
     .MemtoRegD(MemtoRegD),
     .ALUSrcD(ALUSrcD),
@@ -24,7 +25,9 @@ main_decoder Main_Decoder(
     .RegWriteD(RegWriteD),
     .MemWriteD(MemWriteD),
     .ALUOp(ALUOp),
-    .JumpD(JumpD)
+    .JumpD(JumpD),
+    .JalD(JalD),
+    .JrD(JrD)
 );
 
 //ALU Decoder

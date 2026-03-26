@@ -2,7 +2,7 @@
 
 # -------- Paths --------
 set MARS_JAR "F:/Electronics/Computer Organization/Mars4_5.jar"
-set ASM_FILE "./software/Testing_Jump_Instruction_code.asm"
+set ASM_FILE "$argv"
 set OUT_DIR  "./tb/Golden_Model"
 
 puts "Running MARS..."

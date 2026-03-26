@@ -32,7 +32,26 @@ always_ff @(posedge clk , posedge arst) begin
 end
 
 //Read Port
-assign RD1 = reg_file[A1] ;
-assign RD2 = reg_file[A2] ;
+always_comb begin
+    if(WE3) begin
+        // Internal Hazards : to handle the case if WB trying to write while ID trying to read data
+        if(A1 == A2 && A1 == A3) begin // When A1 = A2 = A3 
+            RD1 = WD3;
+            RD2 = WD3;
+        end
+        else if(A1 == A3) begin
+            RD1 = WD3 ;
+            RD2 = reg_file[A2];
+        end
+        else if(A2 == A3) begin
+            RD1 = reg_file[A1];
+            RD2 = WD3 ;
+        end 
+    end
+    else begin
+        RD1 = reg_file[A1] ;
+        RD2 = reg_file[A2] ;
+    end
+end
 
 endmodule

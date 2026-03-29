@@ -8,7 +8,8 @@ module data_path
 (
     input  logic clk, arst,
     input  logic RegWriteD, MemtoRegD, MemWriteD,
-    input  logic BranchD, ALUSrcD,RegDstD, JumpD, JalD,JrD,
+    input  logic BranchD, ALUSrcD,RegDstD,
+    input  logic JumpD, JalD,JrD, BeqOrBneD,
     input  logic[2:0] ALUControlD ,
     output logic[OPCODE_FIELD-1:0] Opcode ,
     output logic[FUNCT_FIELD-1:0] Funct
@@ -184,7 +185,7 @@ end
 // BTA = SignImm * 4 + (PC + 4) , Branch Target Address : PCrelative Addressing Mode
 assign PCBranchD = (SignImmD<<2) + (PCPlus4D) ;
 assign EqualD = (mux_0_D_out == mux_1_D_out) ;
-assign PCSrcD = BranchD & EqualD ;
+assign PCSrcD = BranchD & (BeqOrBneD ^ EqualD) ;
 
 
 assign Opcode = InstrD[31:26] ;

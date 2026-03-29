@@ -14,7 +14,8 @@ logic [OPCODE_FIELD-1:0] Opcode ;
 logic [FUNCT_FIELD-1:0] Funct ;
 
 logic RegWriteD, MemtoRegD,MemWriteD;
-logic BranchD, ALUSrcD, RegDstD, JumpD, JalD, JrD;
+logic BranchD, ALUSrcD, RegDstD ;
+logic JumpD, JalD, JrD, BeqOrBneD;
 logic [2:0]ALUControlD;
 
 //Control Unit
@@ -31,7 +32,8 @@ control_unit #(.OPCODE_FIELD(OPCODE_FIELD),.FUNCT_FIELD(FUNCT_FIELD)) ControlUni
     .RegDstD(RegDstD),
     .JumpD(JumpD),
     .JalD(JalD),
-    .JrD(JrD)
+    .JrD(JrD),
+    .BeqOrBneD(BeqOrBneD)
 );
 //Data Path
 data_path #(
@@ -47,6 +49,7 @@ data_path #(
     .MemtoRegD(MemtoRegD),
     .MemWriteD(MemWriteD),
     .BranchD(BranchD),
+    .BeqOrBneD(BeqOrBneD),
     .JumpD(JumpD),
     .JalD(JalD),
     .JrD(JrD),

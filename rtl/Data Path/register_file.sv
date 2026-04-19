@@ -46,6 +46,10 @@ always_comb begin
         else if(A2 == A3) begin
             RD1 = reg_file[A1];
             RD2 = WD3 ;
+        end
+        else begin
+            RD1 = reg_file[A1] ;
+            RD2 = reg_file[A2] ;
         end 
     end
     else begin

@@ -8,7 +8,8 @@ module InstructionMemory
     output logic [DATA_WIDTH-1:0] ReadData   
 );
 
-logic [(DATA_WIDTH/4)-1:0] instruction_mem [2*ADDR_WIDTH-1:0];
+// logic [(DATA_WIDTH/4)-1:0] instruction_mem [2*ADDR_WIDTH-1:0];
+logic [(DATA_WIDTH/4)-1:0] instruction_mem [255:0];
 
 initial begin
     $readmemh("./tb/Golden_Model/instr_bytes.mem",instruction_mem);

@@ -26,7 +26,7 @@ initial begin
         max_cycles = 500 ;
         $display("[TB Warning] MAX_CYCLES not found. Defaulting to %0d.",max_cycles);
     end
-    repeat(max_cycles+5) begin
+    repeat(max_cycles*5) begin
         @(posedge clk);
         cycle_count = cycle_count + 1;
     end

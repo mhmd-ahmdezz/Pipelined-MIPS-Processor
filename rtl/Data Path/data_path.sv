@@ -93,6 +93,7 @@ always_ff @(posedge clk, posedge arst) begin
 end
 
 // Instruction Memory
+// Address Width is divided by 4, hence we don't all this storage for prototyping
 InstructionMemory #(.DATA_WIDTH(DATA_WIDTH),.ADDR_WIDTH(ADDR_WIDTH)) instr_mem(
     .addr(PCF),
     .ReadData(ReadDataF)
@@ -292,6 +293,7 @@ mux_2x1 #(.DATA_WIDTH(5)) mux_2_E
 // MEM - Stage : Memory Stage
 
 //Data Memory
+// Address Width is divided by 4, hence we don't all this storage for prototyping
 data_mem #(.DATA_WIDTH(DATA_WIDTH),.ADDR_WIDTH(ADDR_WIDTH)) data_mem
 (
     .clk(clk),                               

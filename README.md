@@ -1,12 +1,11 @@
 # Pipelined MIPS Processor - RTL Design & Functional Verification
 > **Status:** RTL Verified | Hazard-Free Pipeline Confirmed | Verification Environment: In Progress
 ## Table of Contents
-- [Pipelined MIPS Processor - RTL Design \& Functional Verification](#pipelined-mips-processor---rtl-design--functional-verification)
-  - [Table of Contents](#table-of-contents)
-  - [Project Overview](#project-overview)
-  - [Architecture](#architecture)
-  - [Verification Startegy](#verification-startegy)
-  - [What I'm Learning](#what-im-learning)
+- [Table of Contents](#table-of-contents)
+- [Project Overview](#project-overview)
+- [Architecture](#architecture)
+- [Verification Startegy](#verification-startegy)
+- [What I'm Learning](#what-im-learning)
 
 ## Project Overview
 this project implements a **5-stage pipelined MIPS processor** in SystemVerilog. The goal is not only to build a working RTL Design, but to build a layered verification environment, coverage-driven testbench.

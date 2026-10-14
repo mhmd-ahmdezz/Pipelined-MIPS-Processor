@@ -1,7 +1,7 @@
-# Five-Stage Pipelined MIPS-Like Processor
+# Five-Stage Pipelined MIPS Processor - RTL Design & Functional Verification
 
 A SystemVerilog processor project focused on pipelined datapath design, control,
-and hazard handling. The RTL implements a subset of MIPS-like instructions in a
+and hazard handling. The RTL implements a subset of MIPS instructions in a
 classic five-stage pipeline.
 
 ## Project goals
@@ -93,19 +93,9 @@ running the design. The current testbench runs the processor for a selected
 number of cycles, but automatically check the final register or
 memory values against expected results.
 
-## Future work
-
-- Add automatic checks for register and memory results.
-- Test forwarding, load-use stalls, and branch dependencies with expected
-  results.
-- Add assertions for pipeline behavior.
-- Explore a clearly defined microarchitecture security question as a separate
-  future step.
-
 ## Repository layout
 
 - `rtl/` — processor, datapath, control, and hazard logic
 - `tb/` — testbench
 - `software/` — assembly programs
 - `scripts/` — simulator and MARS scripts
-
